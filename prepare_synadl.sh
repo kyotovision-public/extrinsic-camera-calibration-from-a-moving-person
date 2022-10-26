@@ -20,7 +20,7 @@ CAM="21 23 25 27"
 python3 calib_synadl.py --prefix ${PREFIX} --target ${TARGET} --aid ${AID} --pid ${PID} --gid ${GID} --calib $CAM
 
 
-SRC_VIDEOS=${PREFIX}/videos/
+SRC_VIDEOS=${PREFIX}/RGB/
 if [ -e ${SRC_VIDEOS} ]; then
     echo "############## COPY VIDEO ##############"
     AID0=$(printf "A%03d\n" "${AID}")
