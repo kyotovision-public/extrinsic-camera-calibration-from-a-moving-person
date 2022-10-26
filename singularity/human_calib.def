@@ -1,0 +1,60 @@
+Bootstrap: docker
+From: pytorch/pytorch:1.8.1-cuda11.1-cudnn8-devel
+
+%post
+
+export DEBIAN_FRONTEND=noninteractive
+export PYTHONNOUSERSITE=1
+
+apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/3bf863cc.pub
+apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
+
+# Install some basic utilities
+apt-get update && apt-get install -y \
+    ca-certificates \
+    cmake \
+    curl \
+    sudo \
+    git \
+    bzip2 \
+    libx11-6 \
+    vim \
+    fonts-ipaexfont \
+    wget \
+    software-properties-common \
+    locales \
+    fish \
+    x11-apps \
+    g++ \
+    make \
+    unzip \
+    ssh \
+    sshfs \
+    iputils-ping \
+    net-tools \
+    kmod \
+    libgl1-mesa-dev \
+&& rm -rf /var/lib/apt/lists/*
+
+pip install --upgrade pip
+pip install tqdm \
+    opencv-python==4.5.5.62 \
+    opencv-contrib-python==4.5.5.62 \
+    pycalib-simple \
+    numba \
+    nvgpu 
+
+
+conda install ffmpeg==4.2.2
+
+## detectron2
+pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu111/torch1.8/index.html
+    
+# set locale
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+
+%environment
+    export PYTHONNOUSERSITE=1
+
