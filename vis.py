@@ -210,8 +210,10 @@ def draw_3d(
         X = p3d[fc, :, 0]
         Y = p3d[fc, :, 1]
         Z = p3d[fc, :, 2]
-
-        draw_skeleton(ax1, X, Y, Z, "w/o fine-tuning")
+        if (p3d_retrain1 is not None or p3d_retrain1 is not None):
+            draw_skeleton(ax1, X, Y, Z, "w/o fine-tuning")
+        else :
+            draw_skeleton(ax1, X, Y, Z, "")
         if p3d_retrain1 is not None:
             X1 = p3d_retrain1[fc, :, 0]
             Y1 = p3d_retrain1[fc, :, 1]
